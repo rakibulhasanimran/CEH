@@ -5,3 +5,9 @@ Most of the exploits will have a preset default payload. However, you can always
 Once you have decided on the payload, you can use the `set payload` command to make your choice.
 
 Some payloads will open new parameters that you may need to set, running the `show options` command once more can show these.
+
+
+
+### meterpreter
+Search File:
+`search -f <filename>`
