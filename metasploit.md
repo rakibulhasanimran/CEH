@@ -11,3 +11,6 @@ Some payloads will open new parameters that you may need to set, running the `sh
 ### meterpreter
 Search File:
 `search -f <filename>`
+
+Help:
+`help`
