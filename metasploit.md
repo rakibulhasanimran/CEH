@@ -14,3 +14,8 @@ Search File:
 
 Help:
 `help`
+
+
+
+# Post-Exploitation
+Commands mentioned previously, such as `getsystem` and `hashdump` will provide important leverage and information for privilege escalation and lateral movement. Meterpreter is also a good base you can use to run post-exploitation modules available on the Metasploit framework. Finally, you can also use the load command to leverage additional tools such as Kiwi or even the whole Python language.
