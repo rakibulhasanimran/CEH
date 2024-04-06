@@ -6,3 +6,5 @@ https://drive.google.com/drive/folders/1b0bdmAUiCJ51GIuBVF1arTeORTpKlJOt
 
 
 Privilage Escalation: https://github.com/m0nad/awesome-privilege-escalation
+
+PhoneSploit Pro: https://github.com/AzeemIdrisi/PhoneSploit-Pro
