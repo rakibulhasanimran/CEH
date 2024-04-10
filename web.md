@@ -32,6 +32,13 @@ When an SSL/TLS (Secure Sockets Layer/Transport Layer Security) certificate is c
 ### Bruteforce DNS
 Bruteforce DNS (Domain Name System) enumeration is the method of trying tens, hundreds, thousands or even millions of different possible subdomains from a pre-defined list of commonly used subdomains. Because this method requires many requests, we automate it with tools to make the process quicker. In this instance, we are using a tool called dnsrecon to perform this.
 Tools: [dnsrecon](https://www.kali.org/tools/dnsrecon/)
+```console
+dnsrecon -t brt -d acmeitsupport.thm
+```
 
 ### OSINT subdomain discovery
 To speed up the process of OSINT subdomain discovery, we can automate the above methods with the help of tools like [Sublist3r](https://github.com/aboul3la/Sublist3r)
+
+```console
+./sublist3r.py -d acmeitsupport.thm
+```
