@@ -122,7 +122,7 @@ At this stage, you may be wondering what the vulnerability could be in this appl
 
 This walkthrough will require running both of the below Curl Requests on the AttackBox which can be opened by using the Blue Button Above.
 
-In the second step of the reset email process, the username is submitted in a POST field to the web server, and the email address is sent in the query string request as a `GE`T field.
+In the second step of the reset email process, the username is submitted in a POST field to the web server, and the email address is sent in the query string request as a `GET` field.
 
 Let's illustrate this by using the curl tool to manually make the request to the webserver.
 
