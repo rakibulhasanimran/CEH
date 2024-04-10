@@ -10,16 +10,20 @@ Although there are many different content discovery tools available, all with th
 
 Using ffuf:
 ```console
-user@machine$ ffuf -w /usr/share/wordlists/SecLists/Discovery/Web-Content/common.txt -u http://10.10.199.0/FUZZ
+ffuf -w /usr/share/wordlists/SecLists/Discovery/Web-Content/common.txt -u http://10.10.199.0/FUZZ
 ```
 
 
 Using dirb:
 ```console
-user@machine$ dirb http://10.10.199.0/ /usr/share/wordlists/SecLists/Discovery/Web-Content/common.txt
+dirb http://10.10.199.0/ /usr/share/wordlists/SecLists/Discovery/Web-Content/common.txt
 ```
 
 Using Gobuster:
 ```console
-user@machine$ gobuster dir --url http://10.10.199.0/ -w /usr/share/wordlists/SecLists/Discovery/Web-Content/common.txt
+gobuster dir --url http://10.10.199.0/ -w /usr/share/wordlists/SecLists/Discovery/Web-Content/common.txt
 ```
+
+
+### SSL/TLS Certificates
+When an SSL/TLS (Secure Sockets Layer/Transport Layer Security) certificate is created for a domain by a CA (Certificate Authority), CA's take part in what's called "Certificate Transparency (CT) logs". These are publicly accessible logs of every SSL/TLS certificate created for a domain name. The purpose of Certificate Transparency logs is to stop malicious and accidentally made certificates from being used. We can use this service to our advantage to discover subdomains belonging to a domain, sites like https://crt.sh and https://ui.ctsearch.entrust.com/ui/ctsearchui offer a searchable database of certificates that shows current and historical results.
