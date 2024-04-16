@@ -20,3 +20,6 @@ Check: ```sudo -l```
 
 
 --------------
+
+### Cron Jobs
+- Check: ```cat /etc/crontab```
