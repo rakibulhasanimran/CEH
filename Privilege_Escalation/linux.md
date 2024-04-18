@@ -33,6 +33,9 @@ Check: ```sudo -l```
 - See Path: ```echo $PATH```
 - Add Path at First: ```export PATH=/tmp:$PATH```
 
+
+
+---------------
 ### NFS
 NFS (Network File Sharing) configuration is kept in the ```/etc/exports``` file. This file is created during the NFS server installation and can usually be read by users.
 
