@@ -27,3 +27,8 @@ Check: ```sudo -l```
 
 ### Cron Jobs
 - Check: ```cat /etc/crontab```
+
+--------------
+### Path
+- See Path: ```echo $PATH```
+- Add Path at First: ```export PATH=/tmp:$PATH```
