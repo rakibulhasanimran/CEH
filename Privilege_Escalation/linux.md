@@ -41,11 +41,13 @@ NFS (Network File Sharing) configuration is kept in the ```/etc/exports``` file.
 
 To check: ```cat /etc/exports```
 
-The critical element for this privilege escalation vector is the “no_root_squash” option you can see above. By default, NFS will change the root user to nfsnobody and strip any file from operating with root privileges. If the “no_root_squash” option is present on a writable share, we can create an executable with SUID bit set and run it on the target system.
+The critical element for this privilege escalation vector is the **“no_root_squash”** option you can see above. By default, NFS will change the root user to nfsnobody and strip any file from operating with root privileges. If the “no_root_squash” option is present on a writable share, we can create an executable with SUID bit set and run it on the target system.
 
-We will start by enumerating mountable shares from our attacking machine.
+We will start by enumerating mountable shares from our **attacking machine**.
 
 - ```showmount -e 10.10.143.128```
+
+We will mount one of the **“no_root_squash”** shares to our **attacking machine** and start building our executable.
 
 - 
 
