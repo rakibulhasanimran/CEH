@@ -24,4 +24,4 @@ Firewall Bypass ```sudo nmap -sN [Machine_IP]```
 
 
 ### DNS service version
-- ```sudo nmap -sSU -p53 –script dns-nsid [Target IP]```
+- ```sudo nmap -sSU -p53 --script dns-nsid [Target IP]```
